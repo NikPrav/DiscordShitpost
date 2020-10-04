@@ -45,6 +45,23 @@ client.on('message', async message => {
         } else{
             const taggedUser = message.mentions.users.first();
             message.channel.send(`You have started suking: ${taggedUser.username}`);
+            message.channel.send(`${taggedUser.username} 8========D O: ${message.author.username} `).then((msg) =>{ 
+                for(i = 0; i< 3 ; ++i){
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8========O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8======O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8====O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8===O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8=O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8===O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8=====O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8======O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8=======O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.edit(`${taggedUser.username} 8========O: ${message.author.username} `); }, 100);
+                setTimeout(() => { msg.delete(); }, 200);
+                }
+            })
+            message.react('💦')
+            message.channel.send("he has come now, you can stop")
         }
     } else if (command === 'play'){
         // Joining a voice channel
@@ -74,28 +91,32 @@ client.on('message', async message => {
        
          
     } else if(command === 'help'){
-        // message.channel.send(`${message.author.username}, plis kandam vazhi od myre. The onli help you need is psychological`);
-        var files = fs.readdirSync('songs/');
-        message.channel.send('To play any sounds, use \`\`\`*play <filename>\`\`\` w/o any extension');
-        // console.log(typeof(files))
-        // var iterator = files.split(",").values
-        // for(let elements of iterator){
-        //     message.channel.send(`> ${elements}`)
-        // }
-        // message.channel.send(`${}`)
-        var Dirlist = ''
-        files.forEach(file => {
-            // message.channel.send(`> ${file}`)
-            
-            if(pathn.extname(file) == '.mp3'){
-                // message.channel.send(`> ${file}`)
-                Dirlist = Dirlist.concat(`${file} \n`)
+        // Special for majja, possibly implement a feature which checks for the simpiest in the group?
+        if(`${message.author.username}` === 'majja'){
+            message.channel.send(`${message.author.username}, plis kandam vazhi od myre. The onli help you need is psychological`);
+        } else{
+            if (!args.length) {
+                message.channel.send(`${prefix}play to play from a variety of songs \n ${prefix}sukdik to suk someone's`);
             }
-        })
         
-        message.channel.send(`>>> ${Dirlist}`)
-        message.channel.send("These are all the files that are available")
-       
+            message.channel.send(`Command name: ${command}\nArguments: ${args}`);
+            var files = fs.readdirSync('songs/');
+            message.channel.send('To play any sounds, use \`\`\`*play <filename>\`\`\` w/o any extension');
+            var Dirlist = ''
+            // Since there's some kinda cooldown associated with the number of messages that you can send at a time to a channel, 
+            // concatnating everything and sending it in a single message
+            files.forEach(file => {
+                // message.channel.send(`> ${file}`)
+                
+                if(pathn.extname(file) == '.mp3'){
+                    // message.channel.send(`> ${file}`)
+                    Dirlist = Dirlist.concat(`${file} \n`)
+                }
+            })
+            
+            message.channel.send(`>>> ${Dirlist}`)
+            message.channel.send("These are all the files that are available")
+        }
 
     }
 
